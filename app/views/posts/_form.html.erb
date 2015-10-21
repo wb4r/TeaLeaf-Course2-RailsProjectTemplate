@@ -1,0 +1,36 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-error"> 
+    <h5>There were some errors:</h5>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li> <%= msg %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="well">
+  <%= form_for @post do |f| %>
+    <div class="control-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="control-group">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+    <div class="control-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 5 %>
+    </div>
+      <% if params[:action] == 'edit' %>
+        <%= f.submit "Update Post", class: "btn btn-primary" %>
+      <% else %>
+        <%= f.submit "Create Post", class: "btn btn-primary" %>
+      <% end %>
+  <% end %>
+</div>
+
+<form action="/">
+  <input class="btn btn-primary" type="submit" value="Back to Index">
+</form>
+
