@@ -22,6 +22,7 @@
       <%= f.label :description %>
       <%= f.text_area :description, rows: 5 %>
     </div>
+      <!-- OPTIONAL VARIATION *** -->
       <% if params[:action] == 'edit' %>
         <%= f.submit "Update Post", class: "btn btn-primary" %>
       <% else %>
@@ -34,3 +35,6 @@
   <input class="btn btn-primary" type="submit" value="Back to Index">
 </form>
 
+<!--
+<%= f.submit(@post.new_record? #? 'Create Post' : 'Update Post', class: "btn btn-primary") %>
+-->
