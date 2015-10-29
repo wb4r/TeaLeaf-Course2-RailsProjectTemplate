@@ -1,0 +1,3 @@
+gitignore removed sqlite3
+resources :users added to routes.rb
+users controller created under models
