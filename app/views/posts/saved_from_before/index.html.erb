@@ -1,22 +1,15 @@
-<%= render 'shared/content_title', title: 'All Posts' %>
 
-<% @posts.each do |post| %>
-  <div class="row">
-    <div class="span8 well">
-      <%= render post.categories %>
 
-      <!-- <h4><%= link_to post.title, post.url %></h4> -->
-      <h4><%= link_to post.title, post_path(post) %></h4>
-      <p><%= post.description %></p>
-      <p>
-        <span class="quiet">posted by</span> <%= post.creator.username %>
-        <small>at <%= post.created_at %></small>
-    </p>
-    <small>
-      <span>
-        <%= link_to("#{post.comments.size} comments", post_path(post)) %>
-      </span>
-    </small>
-    </div>
-  </div>
-<% end %>
+
+<h4>All posts!</h4>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li> <%= link_to post.title, post_path(post) %> 
+    (<%= link_to 'edit', edit_post_path(post) %>) </li>
+  <% end %>
+</ul>
+
+<!-- <form action="/posts/new">
+  <input class="btn btn-primary" type="submit" value="Create Post">
+</form> -->

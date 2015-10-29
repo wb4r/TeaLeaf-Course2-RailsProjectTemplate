@@ -1,20 +1,6 @@
- <%= render 'shared/content_title', title: "Showing Category: #{@category.name}" %>
+<% header = link_to('All Posts', posts_path) + " &raquo; #{@category.name}".html_safe %>
+<%= render 'shared/content_title', title: header %>
 
- <% @category.posts.each do |post| %>
-   <div class="row">
-      <div class="span8 well">
-        <%= render post.categories %>
-        <h4><%= link_to post.title, post.url %></h4>
-        <p><%= post.description %></p>
-        <p>
-          <span class="quiet">posted by</span> <%= post.creator.username %>
-          <small>at <%= post.created_at %></small>
-      </p>
-      <small>
-      <span>
-        <%= link_to("#{post.comments.size} comments", post_path(post)) %>
-      </span>
-      </small>
-      </div>
-    </div>
- <% end %>
+<% @category.posts.each do |post| %>
+  <%= render 'posts/post', post: post %> 
+<% end %>

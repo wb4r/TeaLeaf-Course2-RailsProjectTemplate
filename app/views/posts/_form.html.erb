@@ -1,13 +1,4 @@
-<% if @post.errors.any? %>
-  <div class="alert alert-error"> 
-    <h5>There were some errors:</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li> <%= msg %> </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'shared/errors', obj: @post %>
 
 <div class="well">
   <%= form_for @post do |f| %>
@@ -19,6 +10,16 @@
       <%= f.label :url %>
       <%= f.text_field :url %>
     </div>
+
+
+    <div class="control-group">
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+        <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+      <% end %>
+    </div>
+    <br>
+
+
     <div class="control-group">
       <%= f.label :description %>
       <%= f.text_area :description, rows: 5 %>
