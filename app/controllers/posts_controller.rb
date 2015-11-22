@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
+  # we can use the before_action to redirect
+  # based in some condition:
+  before_action :require_user, except: [:show, :index]
 
   def index
     @posts = Post.all

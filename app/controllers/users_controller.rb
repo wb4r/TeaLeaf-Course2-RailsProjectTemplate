@@ -1,6 +1,26 @@
 class UsersController < ApplicationController
+
+  def new
+    @user = User.new
+  end
+
   def create
-    @user = User.new(params.require(:username).permit!)
-    @user.username = "user_1"
+    @user = User.new(user_params)
+
+    if @user.save
+      flash[:notice] = "You are registered."
+      redirect_to root_path
+    else
+      # flash[:alert] = "User name and password can't match."
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user) .permit(:username, :password)
   end
 end
+
+

@@ -12,15 +12,16 @@
 <p><strong>Post's url:</strong> <%= @post.url %> </p>
 <hr>
 
-<%= form_for [@post, @comment] do |f| %>
-  <% render 'shared/errors', obj: @comment %>
-  <div class="control-group">
-    <%= f.label :body, "Leave a comment:" %>
-    <%= f.text_area :body, rows: 5, class: "span-4" %>
-  </div>
-  <%= f.submit "Create comment", class: "btn btn-primary" %>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <% render 'shared/errors', obj: @comment %>
+    <div class="control-group">
+      <%= f.label :body, "Leave a comment:" %>
+      <%= f.text_area :body, rows: 5, class: "span-4" %>
+    </div>
+    <%= f.submit "Create comment", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
-
 
 <h5>Comments:</h5>
 
