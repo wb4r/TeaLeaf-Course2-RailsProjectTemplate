@@ -26,14 +26,14 @@
     </div>
       <!-- OPTIONAL VARIATION *** -->
       <% if params[:action] == 'edit' %>
-        <%= f.submit "Update Post", class: "btn btn-primary" %>
+        <%= f.submit "Update Post", class: "btn btn-warning" %>
       <% else %>
-        <%= f.submit "Create Post", class: "btn btn-primary" %>
+        <%= f.submit "Create Post", class: "btn btn-warning" %>
       <% end %>
   <% end %>
 </div>
 
 <form action="/">
-  <input class="btn btn-primary" type="submit" value="Back to Index">
+  <input class="btn btn-secondary" type="submit" value="Back to Index">
 </form>
 

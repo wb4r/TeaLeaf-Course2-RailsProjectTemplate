@@ -18,8 +18,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.creator = User.first # DELETE LATER!
+    # @post.creator = User.first # DELETE LATER!
     # @post.category_id = 1
+    @post.creator = current_user
     if @post.save
       flash[:notice] = "Your post was created"
       redirect_to post_path(@post)

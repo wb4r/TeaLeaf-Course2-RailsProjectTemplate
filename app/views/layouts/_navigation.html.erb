@@ -16,7 +16,7 @@
       <li class="divider"></li>
       <li>
         <%= link_to(new_category_path) do %>
-          <i class="icon-plus"></i>
+          <i class="icon-plus" ></i>
           New Category
         <% end %>
       </li>
@@ -27,11 +27,35 @@
 
 <% if logged_in? %>
   <div class="nav_item">
-    <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
+    <%= link_to 'New Post', new_post_path, class: 'btn btn-outline btn-small' %>
   </div>
-  <div class="nav_item">
-    <%= link_to 'Log out', logout_path, class: 'btn btn-small' %>
+  <div class="btn-group nav_item">
+    <%= link_to('', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+      <%= current_user.username %>
+      <span class='caret'></span>
+    <% end %>
+    <ul class="dropdown-menu">
+      <li> 
+      <%= link_to edit_user_path(current_user) do %>
+        <i class='icon-pencil'></i>
+        &nbsp;&nbsp; Edit Profile
+      <% end %>
+      </li>
+      <li> 
+      <%= link_to user_path(current_user) do %>
+        <i class='icon-user'></i>
+        &nbsp;&nbsp; View Profile
+      <% end %>
+      </li>
+      <li> 
+      <%= link_to logout_path do %>
+        <i class='icon-circle-arrow-left'></i>
+        &nbsp;&nbsp; Logout
+      <% end %>
+      </li>
+    </ul>
   </div>
+
 <% else %>
   <div class="nav_item">
     <%= link_to 'Register', register_path, class: 'btn btn-primary btn-small' %>
