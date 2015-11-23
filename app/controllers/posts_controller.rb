@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   # we can use the before_action to redirect
   # based in some condition:
   before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @posts = Post.all
@@ -31,7 +32,8 @@ class PostsController < ApplicationController
   end
 
   def edit
-    establish_category
+    # binding.pry
+    # establish_category
   end
 
   def update
@@ -45,7 +47,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   private
 
   def post_params
@@ -54,6 +55,13 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])    
+  end
+
+  def require_same_user
+    if current_user != @post.creator
+      flash[:error] = "You are not allowed to do that!"
+      redirect_to root_path    
+    end
   end
 
   # def establish_category
