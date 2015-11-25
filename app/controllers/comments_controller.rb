@@ -14,7 +14,9 @@ class CommentsController < ApplicationController
       flash[:notice] = "Your comment was added"
       redirect_to post_path(@post)
     else
-      render '/posts/show'
+      # render '/posts/show'
+      flash[:error] = "You have to write few things in the comment box."
+      redirect_to post_path(@post)
     end
   end
 
