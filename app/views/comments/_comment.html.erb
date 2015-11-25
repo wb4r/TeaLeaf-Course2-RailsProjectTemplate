@@ -1,5 +1,5 @@
-
-  <div class="well span8">
+  
+  <div class="well span6">
     <em>"<%= comment.body %></em>    
     <br>
     <span class="quiet">by</span> 
@@ -8,4 +8,15 @@
     <% if show_post %>
       &nbsp;&nbsp;&nbsp;on&nbsp; <%= link_to comment.post.title, post_path(comment.post) %> 
     <% end %>    
+  </div>
+  <div class="span0 well text-center">
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+      <i class="icon-arrow-up"></i>
+    <% end %>
+    <br>
+    <p style="font-size: 0.7rem; margin-bottom: -30px; margin-top: -6px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= comment.total_votes %></p>
+    <br>
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+      <i class="icon-arrow-down"style="margin-right: 1px;"></i>
+    <% end %>
   </div>

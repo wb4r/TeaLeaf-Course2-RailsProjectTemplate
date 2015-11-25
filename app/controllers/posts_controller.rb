@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   # we can use the before_action to redirect
   # based in some condition:
   before_action :require_user, except: [:show, :index]
   before_action :require_same_user, only: [:edit, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -44,6 +44,24 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render :edit
+    end
+  end
+
+  def vote
+    vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+      
+    if current_user
+
+      if vote.valid?
+        flash[:notice] = 'Your vote was counted on that post.'
+      else
+        flash[:error] = 'You can only vote once on a post'
+      end      
+    
+      redirect_to :back    
+    else
+      flash[:alert] = "You must log in to vote"
+      redirect_to root_path
     end
   end
 

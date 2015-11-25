@@ -3,9 +3,9 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
       t.boolean :vote 
       t.integer :user_id
-      # t.string :voteable_type
-      # t.integer :voteable_id
-      t.references :voteable, polymorhpic: true
+      t.string :voteable_type
+      t.integer :voteable_id
+      # t.references :voteable, polymorhpic: true
       t.timestamps
     end
   end

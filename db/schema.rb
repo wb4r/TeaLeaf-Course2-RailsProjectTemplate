@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20151123184223) do
   create_table "votes", force: true do |t|
     t.boolean  "vote"
     t.integer  "user_id"
+    t.string   "voteable_type"
     t.integer  "voteable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
